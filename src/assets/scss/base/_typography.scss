@@ -1,0 +1,16 @@
+html {
+  font-family: $ff-roboto;
+  font-weight: normal;
+  font-style: normal;
+  color: $color-dark;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h1 {
+  @include h1;
+}
+
+.text-default {
+  // @include text-default;
+}

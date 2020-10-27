@@ -1,0 +1,11 @@
+$grid-breakpoints: (
+  sm: 0,
+  md: 640px,
+  lg: 990px,
+) !default;
+
+$grid-max-width: 1600;
+
+$wrapper-gutter-sm-1: 24;
+$wrapper-gutter-md-1: 40;
+$wrapper-gutter-lg-1: 120;
