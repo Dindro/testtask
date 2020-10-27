@@ -6,9 +6,9 @@
 		</div>
 
 		<div class="card-contact__fields">
-			<div class="card-contact__field card-contact-field" v-for="key in fields" :key="key">
-				<p class="card-contact-field__key">{{ key }}</p>
-				<p class="card-contact-field__value">{{ fields[key] }}</p>
+			<div class="card-contact__field card-contact-field" v-for="(value, name) in fields" :key="name">
+				<p class="card-contact-field__key">{{ name }}</p>
+				<p class="card-contact-field__value">{{ value }}</p>
 			</div>
 		</div>
 	</div>
@@ -25,7 +25,9 @@ export default {
 
 <style lang="scss">
 .card-contact {
-
+	padding: rem(24);
+	border: 1px solid rgba($color-dark, 0.3);
+	border-radius: rem(4);
 }
 
 .card-contact-field {
