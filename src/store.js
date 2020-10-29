@@ -13,10 +13,9 @@ export default new Vuex.Store({
 	},
 
 	mutations: {
-
-	},
-
-	actions: {
-
+		ADD_CONTACT: (state, contact) => {
+			contact.id =  Date.now();
+			state.contacts.push(contact);
+		},
 	},
 });

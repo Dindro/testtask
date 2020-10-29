@@ -33,6 +33,14 @@ export default {
 	&__item {
 		padding: rem(8);
 		width: calc(100% / 3);
+
+		@include media-breakpoint-down(md) {
+			width: 50%;
+		}
+
+		@include media-breakpoint-down(sm) {
+			width: 100%;
+		}
 	}
 }
 </style>

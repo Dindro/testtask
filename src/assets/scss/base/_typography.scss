@@ -7,10 +7,15 @@ html {
 }
 
 h1,
-h1 {
+.h1 {
   @include h1;
 }
 
+h4,
+.h4 {
+  @include h4;
+}
+
 .text-default {
-  // @include text-default;
+  @include text-default;
 }
