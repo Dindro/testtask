@@ -9,11 +9,19 @@ export default {
 		name: String,
 	},
 
-	data: () => ({
-		src: require(`src/assets/icons/${this.name}.svg?raw`),
-		nameShort: this.getName(this.name),
-		sizeMod: this.size || this.getSize(this.name),
-	}),
+	computed: {
+		src() {
+			return require(`@/assets/icons/${this.name}.svg`);
+		},
+
+		nameShort() {
+			return this.getName(this.name);
+		},
+
+		sizeMod() {
+			return this.size || this.getSize(this.name);
+		}
+	},
 
 	methods: {
 		getSize(name) {
