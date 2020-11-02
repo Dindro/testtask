@@ -244,7 +244,11 @@ export default {
 	}
 
 	&__fields {
-		margin-top: rem(16);
+		margin-top: rem(32);
+
+		@include media-breakpoint-down(sm) {
+			margin-top: rem(16);
+		}
 	}
 
 	&__name {
@@ -265,7 +269,11 @@ export default {
 
 .contacts-form-fields {
 	&__title {
-		margin-bottom: rem(4);
+		margin-bottom: rem(16);
+
+		@include media-breakpoint-down(sm) {
+			margin-bottom: rem(8);
+		}
 	}
 
 	&__field {
