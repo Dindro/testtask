@@ -1,5 +1,12 @@
 <template>
-	<div class="icon" :class="[`icon--${sizeMod}`, `icon--${nameShort}`]" v-html="src"></div>
+	<div
+		class="icon"
+		:class="[`icon--${sizeMod}`, `icon--${nameShort}`]"
+	>
+		<svg xmlns="http://www.w3.org/2000/svg">
+			<use :xlink:href="path" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+		</svg>
+	</div>
 </template>
 
 <script>
@@ -10,8 +17,8 @@ export default {
 	},
 
 	computed: {
-		src() {
-			return require(`@/assets/icons/${this.name}.svg`);
+		path() {
+			return require(`@/assets/icons/${this.name}.svg`).default.url;
 		},
 
 		nameShort() {
