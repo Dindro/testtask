@@ -15,14 +15,18 @@ export default {
 	props: {
 		title: String,
 		card: Object,
-	}
-}
+	},
+};
 </script>
 
 <style lang="scss">
 .card-contact-shell {
 	&__title {
 		margin-bottom: rem(24);
+
+		@include media-breakpoint-down(sm) {
+			margin-bottom: rem(16);
+		}
 	}
 }
 </style>

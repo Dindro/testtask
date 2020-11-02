@@ -1,8 +1,8 @@
 <template>
-	<div class="card-contact-list">
+	<div class="card-contact-list" v-if="items.length">
 		<div class="card-contact-list__items">
 			<div class="card-contact-list__item" v-for="item in items" :key="item.id">
-				<card-contact v-bind="item"></card-contact>
+				<card-contact v-bind="item" @action="handleAction"></card-contact>
 			</div>
 		</div>
 	</div>
@@ -18,6 +18,12 @@ export default {
 
 	props: {
 		items: Array,
+	},
+
+	methods: {
+		handleAction(e) {
+			this.$emit('action', e);
+		}
 	}
 }
 </script>

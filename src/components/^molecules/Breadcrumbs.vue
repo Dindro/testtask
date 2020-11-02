@@ -39,6 +39,8 @@ export default {
 
 	li + li {
 		&::before {
+			color: $color-dark;
+			opacity: 0.65;
 			content: '—';
 			display: inline-block;
 			margin: 0 0.3em;

@@ -1,22 +1,29 @@
 <template>
-	<div>
+	<div class="wrapper">
 		<hero v-bind="hero" class="mt-64 mt-md-112"></hero>
+		<contacts-form-edit
+			class="mt-64"
+			v-bind="form"
+			:card="card"
+			@add="addField"
+			@remove="removeField"
+			@rename="renameField"
+			@load="loadFields"
+		></contacts-form-edit>
 	</div>
 </template>
 
 <script>
 import Hero from '&/Hero';
+import ContactsFormEdit from '&/ContactsFormEdit';
 
-import { mapMutations, mapState } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
 	components: {
 		Hero,
+		ContactsFormEdit,
 	},
-
-	data: () => ({
-
-	}),
 
 	computed: {
 		...mapState({
@@ -28,8 +35,10 @@ export default {
 		},
 
 		hero() {
+			const { name } = this.card.fields;
+
 			return {
-				title: this.card.title,
+				title: name,
 				breadcrumbs: {
 					items: [
 						{
@@ -37,7 +46,7 @@ export default {
 							to: { name: 'contacts' },
 						},
 						{
-							text: this.card.title,
+							text: name,
 							to: {
 								name: 'contacts-detail',
 								params: { id: this.card.id },
@@ -45,14 +54,47 @@ export default {
 						},
 					],
 				},
-			}
-		}
+			};
+		},
+
+		form() {
+			return {
+				form: {
+					name: {
+						name: 'Имя',
+					},
+					fields: {
+						title: 'Поля',
+						name: 'Название поля',
+						value: 'Значение поля',
+						cancelPopover: 'Отменить изменения?',
+						removePopover: 'Уверены, что хотите удалить поле?',
+					},
+					state: 'Отменить последнее изменение',
+				},
+				preview: {
+					title: 'Предпрсмотр',
+				},
+			};
+		},
 	},
 
 	methods: {
-		...mapMutations({
-			addContact: 'ADD_CONTACT',
-		}),
+		addField(data) {
+			this.$store.commit('ADD_FIELD', { contact: this.card, data });
+		},
+
+		removeField(key) {
+			this.$store.commit('REMOVE_FIELD', { contact: this.card, key });
+		},
+
+		renameField(data) {
+			this.$store.commit('RENAME_FIELD', { contact: this.card, data });
+		},
+
+		loadFields(fields) {
+			this.$store.commit('SET_FIELDS', { contact: this.card, fields });
+		}
 	},
 }
 </script>

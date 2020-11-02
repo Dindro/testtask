@@ -1,8 +1,8 @@
 <template>
-	<div>
+	<div class="wrapper">
 		<hero v-bind="hero" class="mt-64 mt-md-112"></hero>
 		<contacts-form v-bind="contactsForm" @add="addContact" class="mt-40 mt-md-64"></contacts-form>
-		<card-contact-list v-bind="contacts" class= "mt-40 mt-md-80"></card-contact-list>
+		<card-contact-list v-bind="contacts" @action="({ id }) => removeContact(id)" class= "mt-40 mt-md-80"></card-contact-list>
 	</div>
 </template>
 
@@ -58,6 +58,10 @@ export default {
 				// Подговка ссылки
 				const items = state.contacts.map((contact) => {
 					const link = {
+						actionConfirmTitle: 'Вы уверены что хотите удалить?',
+						action: {
+							icon: { name: '24/trash' },
+						},
 						to: {
 							name: 'contacts-detail',
 							params: { id: contact.id },
@@ -67,9 +71,7 @@ export default {
 					return Object.assign({}, contact, link);
 				});
 
-				return {
-					items,
-				};
+				return { items };
 			}
 		}),
 	},
@@ -77,6 +79,7 @@ export default {
 	methods: {
 		...mapMutations({
 			addContact: 'ADD_CONTACT',
+			removeContact: 'REMOVE_CONTACT',
 		}),
 	},
 }

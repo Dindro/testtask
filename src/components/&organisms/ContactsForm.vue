@@ -11,7 +11,7 @@
 			></btn>
 		</form>
 		<div class="contacts-form__preview" v-if="card">
-			<card-contact-shell v-bind="Object.assign({}, preview, card)"></card-contact-shell>
+			<card-contact-shell v-bind="cardPreview"></card-contact-shell>
 		</div>
 	</div>
 </template>
@@ -42,16 +42,20 @@ export default {
 			if (!this.name) return null;
 
 			return {
-				card: {
-					title: this.name,
-				},
+				fields: {
+					name: this.name,
+				}
 			};
+		},
+
+		cardPreview() {
+			return Object.assign({}, this.preview, { card: this.card });
 		},
 	},
 
 	methods: {
 		add() {
-			this.$emit('add', { title: this.name });
+			this.$emit('add', this.card);
 			this.name = '';
 		}
 	}
